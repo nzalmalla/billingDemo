@@ -1,7 +1,13 @@
 package com.example.billing.repository;
 
 import com.example.billing.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+import java.util.List;
+
+public interface UserRepository {
+    User save(User user);
+
+    List<User> getUsers();
+
+    User getUserById(String id);
 }
