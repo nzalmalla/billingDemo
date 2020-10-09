@@ -35,7 +35,7 @@ public class ProductRepositoryImpl implements ProductRepository{
     }
 
     @Override
-    public User getProductById(String id) {
+    public Product getProductById(String id) {
         return null;
     }
     }
