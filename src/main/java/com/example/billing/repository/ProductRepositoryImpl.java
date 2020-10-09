@@ -2,7 +2,6 @@ package com.example.billing.repository;
 
 import com.example.billing.DatasourceImpl;
 import com.example.billing.model.Product;
-import com.example.billing.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,4 +39,4 @@ public class ProductRepositoryImpl implements ProductRepository{
     }
     }
 
-}
+
