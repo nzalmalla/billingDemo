@@ -11,7 +11,7 @@ public class DatasourceImpl {
     public static final String URL = "localhost:3306";
     public static final String DATABASE = "billing";
     public static final String USERNAME = "root";
-    public static final String PASSWORD = "root";
+    public static final String PASSWORD = "";
     private static Logger logger = LoggerFactory.getLogger(DatasourceImpl.class);
 
     public static Connection getConnection() throws SQLException {

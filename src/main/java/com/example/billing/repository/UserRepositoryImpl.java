@@ -2,6 +2,7 @@ package com.example.billing.repository;
 
 import com.example.billing.DatasourceImpl;
 import com.example.billing.model.User;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
-        String sql = "sql";
+        String sql = "insert into User" + "(Id,Name,Age,Email)"+ "values(1,Anjal,23,www.anjalthakuri.com)";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);) {
             statement.setString(1, user.getId());

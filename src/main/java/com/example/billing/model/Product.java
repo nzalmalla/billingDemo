@@ -1,14 +1,34 @@
 package com.example.billing.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 
-@Entity
 public class Product {
-    @Id
+
     String productId;
     String productName;
     int productPrice;
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String id) {
+        this.productId = id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String name) {
+        this.productName = name;
+    }
+
+    public int getProductPrice() { return productPrice; }
+
+    public void setProductPrice(int price) {
+        this.productPrice = price;
+    }
+
 
 }
