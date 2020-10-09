@@ -18,7 +18,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
-        String sql = "insert into User" + "(Id,Name,Age,Email)"+ "values(1,Anjal,23,www.anjalthakuri.com)";
+        String sql = "insert into User" + "(Id,Name,Age,Email)"+ "values(?,?,?,?)";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);) {
             statement.setString(1, user.getId());

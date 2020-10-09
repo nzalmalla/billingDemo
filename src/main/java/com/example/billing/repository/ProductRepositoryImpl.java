@@ -15,7 +15,7 @@ public class ProductRepositoryImpl implements ProductRepository{
 
     @Override
     public Product save(Product product) {
-        String sql = "insert into Product" + "(productId,productName,productPrice)"+ "values(1,CocaCola,5)";
+        String sql = "insert into Product" + "(productId,productName,productPrice)"+ "values(?,?,?)";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);) {
             statement.setString(1, product.getProductId());
