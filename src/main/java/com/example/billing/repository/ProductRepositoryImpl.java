@@ -13,12 +13,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProductRepositoryImpl implements ProductRepository{
+public class ProductRepositoryImpl implements ProductRepository {
     private static final Logger logger = LoggerFactory.getLogger(ProductRepositoryImpl.class);
 
     @Override
     public Product save(Product product) {
-        String sql = "insert into Product" + "(productId,productName,productPrice)"+ "values(?,?,?)";
+        String sql = "insert into Product" + "(productId,productName,productPrice)" + "values(?,?,?)";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);) {
             statement.setString(1, product.getProductId());
@@ -32,11 +32,10 @@ public class ProductRepositoryImpl implements ProductRepository{
     }
 
 
-
     @Override
-    public List<User> getProducts() throws SQLException {
+    public List<Product> getProducts() throws SQLException {
         String sql = "SELECT (id, name, price) FROM product";
-        List<User> results = Lists.newArrayList();
+        List<Product> results = Lists.newArrayList();
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
@@ -44,7 +43,7 @@ public class ProductRepositoryImpl implements ProductRepository{
                 String id = resultSet.getString("id");
                 String name = resultSet.getString("name");
                 int price = resultSet.getInt("price");
-                results.add(new User(id, name, price))
+                results.add(new Product(id, name, price));
             }
         } catch (SQLException e) {
             logger.error("Error getting user data.");
@@ -54,16 +53,16 @@ public class ProductRepositoryImpl implements ProductRepository{
     }
 
     @Override
-    public User getProductById(String id) throws SQLException {
+    public Product getProductById(String id) throws SQLException {
         String sql = "SELECT (id, name, price) FROM product";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = getResultSet(statement, id)) {
             if (resultSet.next()) {
+                String productId = resultSet.getString("id");
                 String name = resultSet.getString("name");
                 int price = resultSet.getInt("price");
-                String id = resultSet.getString("id");
-                return new User(id, name, price);
+                return new Product(productId, name, price);
             }
         } catch (SQLException e) {
             logger.error("Error getting user data.");

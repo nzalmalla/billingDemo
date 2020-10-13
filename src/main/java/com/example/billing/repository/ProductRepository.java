@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProductRepository {
     Product save(Product product);
 
-    List<User> getProducts() throws SQLException;
+    List<Product> getProducts() throws SQLException;
 
     Product getProductById(String id) throws  SQLException;
 
