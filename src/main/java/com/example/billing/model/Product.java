@@ -1,20 +1,12 @@
 package com.example.billing.model;
 
 
+
 public class Product {
 
     String productId;
     String productName;
     int productPrice;
-
-    public Product() {
-    }
-
-    public Product(String productId, String productName, int productPrice) {
-        this.productId = productId;
-        this.productName = productName;
-        this.productPrice = productPrice;
-    }
 
     public String getProductId() {
         return productId;
@@ -32,9 +24,7 @@ public class Product {
         this.productName = name;
     }
 
-    public int getProductPrice() {
-        return productPrice;
-    }
+    public int getProductPrice() { return productPrice; }
 
     public void setProductPrice(int price) {
         this.productPrice = price;

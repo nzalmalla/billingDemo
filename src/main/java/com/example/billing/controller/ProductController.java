@@ -18,13 +18,13 @@ private final ProductService service;
     }
 
     @GetMapping("/product")
-    public List<Product> getAllPerson() {
+    public List<Product> getAllProducts() {
         return service.findAll();
     }
 
 
     @GetMapping("/product/{id}")
-    public Optional<Product> getById(@PathVariable int id) {
+    public Optional<Product> getProductsById(@PathVariable int id) {
         return service.findById(id);
     }
 
