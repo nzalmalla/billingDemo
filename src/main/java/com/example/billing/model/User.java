@@ -6,7 +6,7 @@ public class User {
     private int age;
     private String email;
 
-    public User() {
+    public User(String id, String name, int price) {
     }
 
     public User(String id, String name, int age, String email) {
