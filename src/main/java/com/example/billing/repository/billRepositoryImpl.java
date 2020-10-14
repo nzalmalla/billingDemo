@@ -19,7 +19,7 @@ public class billRepositoryImpl implements bill_Repository {
         String sql = "insert into User" + "(bill_Id,bill_total,bill_discount)" + "values(?,?,?)";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);) {
-            statement.setDouble(1, bill.getBill_id());
+            statement.setString(1, bill.getBill_id());
             statement.setDouble(1, bill.getBill_total());
             statement.setDouble(1, bill.getBill_discount());
 
@@ -40,7 +40,7 @@ public class billRepositoryImpl implements bill_Repository {
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                
-                Double id = resultSet.getDouble("bill_id");
+                String id = resultSet.getString("bill_id");
                 Double total = resultSet.getDouble("bill_total");
                 Double discount = resultSet.getDouble("bill_discount");
                 
