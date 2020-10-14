@@ -10,10 +10,10 @@ public class Bill {
     double VAT =0.13;
     List<Product>products;
 
-    public Bill(Double bill_id, double bill_total, double bill_discount){
+    public Bill(String bill_id, double bill_total, double bill_discount){
     }
 
-    public double getBill_id() {
+    public String getBill_id() {
         return bill_id;
     }
 

@@ -1,8 +1,6 @@
 package com.example.billing.service;
 
 import com.example.billing.model.Bill;
-import com.example.billing.model.User;
-import com.example.billing.repository.UserRepository;
 import com.example.billing.repository.bill_Repository;
 
 import java.util.List;
@@ -20,7 +18,7 @@ public class billService {
         return repository.findAll();
     }
     public Optional<Bill> findBillById(int id){
-        return repository.findBillById(id);
+        return repository.findById(id);
     }
 
 }

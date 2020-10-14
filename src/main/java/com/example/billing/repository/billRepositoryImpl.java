@@ -53,16 +53,18 @@ public class billRepositoryImpl implements bill_Repository {
         return results;
     }
 
-    public Bill getBillById(double id) throws SQLException {
+
+
+    public Bill getBillById(String bill_id) throws SQLException {
         String sql = "SELECT (bill_Id,bill_total,bill_discount) FROM bills";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = getResultSet(statement,id)) {
+             ResultSet resultSet = getResultSet(statement,bill_id)) {
             if (resultSet.next()) {
                 double total = resultSet.getDouble("bill_total");
                 double discount = resultSet.getDouble("bill_discount");
 
-                return new Bill(id,total,discount);
+                return new Bill(bill_id,total,discount);
             }
         } catch (SQLException e) {
             logger.error("Error getting user data.");
@@ -71,7 +73,7 @@ public class billRepositoryImpl implements bill_Repository {
         return null;
     }
 
-    private ResultSet getResultSet(PreparedStatement statement, double args) throws SQLException {
+    private ResultSet getResultSet(PreparedStatement statement, String args) throws SQLException {
         for (int i = 0; i < args.length; i++) {
             statement.setString(i + 1, args[i]);
         }

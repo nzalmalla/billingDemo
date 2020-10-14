@@ -27,7 +27,7 @@ public class billController {
 
     @GetMapping("/bill/{id}")
     public Optional<Bill> getBillById(@PathVariable int id) {
-        return service.findById(id);
+        return service.findBillById(id);
     }
 
     @PostMapping("/user")

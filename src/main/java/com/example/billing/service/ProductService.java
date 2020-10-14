@@ -26,7 +26,7 @@ private final ProductRepository repository;
 
 
     public Optional<Product> findById(int id) {
-    return repository.findById(id);
+    return repository.findBillById(id);
     }
 
 
