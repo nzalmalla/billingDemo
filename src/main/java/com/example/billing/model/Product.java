@@ -8,6 +8,9 @@ public class Product {
     String productName;
     int productPrice;
 
+    public Product(String p_id, String name, int price) {
+    }
+
     public String getProductId() {
         return productId;
     }

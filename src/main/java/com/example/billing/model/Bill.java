@@ -2,17 +2,18 @@ package com.example.billing.model;
 
 import java.util.List;
 
-public class bill {
+public class Bill {
     private String bill_id;
     User user;
     double bill_total;
     double bill_discount;
     double VAT =0.13;
     List<Product>products;
-    public bill(String bill_id,double bill_total,double bill_discount){
+
+    public Bill(Double bill_id, double bill_total, double bill_discount){
     }
 
-    public String getBill_idId() {
+    public double getBill_id() {
         return bill_id;
     }
 

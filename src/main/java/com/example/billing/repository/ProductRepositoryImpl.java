@@ -44,7 +44,7 @@ public class ProductRepositoryImpl implements ProductRepository{
                 String p_id = resultSet.getString("id");
                 String name = resultSet.getString("name");
                 int price = resultSet.getInt("price");
-                results.add(new Product(p_id, name, price))
+                results.add(new Product(p_id, name, price));
             }
         } catch (SQLException e) {
             logger.error("Error getting user data.");

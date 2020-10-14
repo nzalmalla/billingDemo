@@ -6,6 +6,9 @@ public class User {
     private int age;
     private String email;
 
+
+
+
     public void Product(String id, String name, int price) {
     }
 
