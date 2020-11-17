@@ -32,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> getUsers() throws SQLException {
+    public List<User> findAll() throws SQLException {
         String sql = "SELECT (id, name, age, email) FROM user";
         List<User> results = Lists.newArrayList();
         try (Connection connection = DatasourceImpl.getConnection();
@@ -53,7 +53,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getUserById(String id) throws SQLException {
+    public User findById(String id) throws SQLException {
         String sql = "SELECT (id, name, age, email) FROM user";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);

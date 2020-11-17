@@ -1,7 +1,7 @@
 package com.example.billing.controller;
 
 import com.example.billing.model.Bill;
-import com.example.billing.service.billService;
+import com.example.billing.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.Optional;
 
-public class billController {
-    private final billService service;
+public class BillController {
+    private final BillService billService;
 
     @Autowired
-    public billController(billService service) {
-        this.service = service;
+    public BillController(BillService billService) {
+        this.billService = billService;
     }
 
     @GetMapping("/bill")
     public List<Bill> getAllBill() {
-        return service.findAll();
+        return billService.findAll();
     }
 
 
     @GetMapping("/bill/{id}")
-    public Optional<Bill> getBillById(@PathVariable int id) {
-        return service.findBillById(id);
+    public Optional<Bill> getBillById(@PathVariable String id) {
+        return billService.findBillById(id);
     }
 
     @PostMapping("/user")
-    public Bill save(@RequestBody Bill bill) {
-        return service.save(bill);
+    public Optional<Bill> save(@RequestBody Bill bill) {
+        return billService.save(bill);
     }
 
 

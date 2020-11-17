@@ -1,4 +1,4 @@
-
+package com.example.billing.service;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
-
 
     @Override
     public UserDetails loadUserByUsername(String userName) {

@@ -2,7 +2,6 @@ package com.example.billing.repository;
 
 import com.example.billing.DatasourceImpl;
 import com.example.billing.model.Product;
-import com.example.billing.model.User;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +12,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ProductRepositoryImpl implements ProductRepository{
+public class ProductRepositoryImpl implements ProductRepository {
     private static final Logger logger = LoggerFactory.getLogger(ProductRepositoryImpl.class);
 
     @Override
     public Product save(Product product) {
-        String sql = "insert into Product" + "(productId,productName,productPrice)"+ "values(?,?,?)";
+        String sql = "insert into Product" + "(productId,productName,productPrice)" + "values(?,?,?)";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);) {
             statement.setString(1, product.getProductId());
@@ -32,11 +31,10 @@ public class ProductRepositoryImpl implements ProductRepository{
     }
 
 
-
     @Override
-    public List<User> getProducts() throws SQLException {
+    public List<Product> findAll() throws SQLException {
         String sql = "SELECT (id, name, price) FROM product";
-        List<User> results = Lists.newArrayList();
+        List<Product> results = Lists.newArrayList();
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
@@ -54,7 +52,7 @@ public class ProductRepositoryImpl implements ProductRepository{
     }
 
     @Override
-    public User getProductById(String id) throws SQLException {
+    public Product findBillById(String id) throws SQLException {
         String sql = "SELECT (id, name, price) FROM product";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);

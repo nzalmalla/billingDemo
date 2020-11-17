@@ -8,8 +8,8 @@ import java.util.List;
 public interface ProductRepository {
     Product save(Product product);
 
-    List<Product> getProducts() throws SQLException;
+    List<Product> findAll() throws SQLException;
 
-    Product getProductsById(String id) throws  SQLException;
+    Product findBillById(String id) throws  SQLException;
 
 }

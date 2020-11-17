@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserRepository {
     boolean save(User user);
 
-    List<User> getUsers() throws SQLException;
+    List<User> findAll() throws SQLException;
 
-    User getUserById(String id) throws SQLException;
+    User findById(String id) throws SQLException;
 }

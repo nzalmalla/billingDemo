@@ -11,9 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
-public class billRepositoryImpl implements bill_Repository {
-    private static final Logger logger = LoggerFactory.getLogger(UserRepositoryImpl.class);
+public class BillRepositoryImpl implements BillRepository {
+    private static final Logger logger = LoggerFactory.getLogger(BillRepositoryImpl.class);
+
     @Override
     public boolean save(Bill bill) {
         String sql = "insert into User" + "(bill_Id,bill_total,bill_discount)" + "values(?,?,?)";
@@ -30,21 +32,21 @@ public class billRepositoryImpl implements bill_Repository {
         }
         return false;
     }
-    
+
     @Override
-    public List<Bill> getBills() throws SQLException {
+    public List<Bill> findAll() throws SQLException {
         String sql = "SELECT (bill_Id,bill_total,bill_discount) FROM bills";
         List<Bill> results = Lists.newArrayList();
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-               
+
                 String id = resultSet.getString("bill_id");
                 Double total = resultSet.getDouble("bill_total");
                 Double discount = resultSet.getDouble("bill_discount");
-                
-                results.add(new Bill(id, total,discount));
+
+                results.add(new Bill(id, total, discount));
             }
         } catch (SQLException e) {
             logger.error("Error getting user data.");
@@ -53,31 +55,28 @@ public class billRepositoryImpl implements bill_Repository {
         return results;
     }
 
-
-
-    public Bill getBillById(String bill_id) throws SQLException {
+    @Override
+    public Optional<Bill> findById(String bill_id) throws SQLException {
         String sql = "SELECT (bill_Id,bill_total,bill_discount) FROM bills";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = getResultSet(statement,bill_id)) {
+             ResultSet resultSet = getResultSet(statement, "bill_id")) {
             if (resultSet.next()) {
                 double total = resultSet.getDouble("bill_total");
                 double discount = resultSet.getDouble("bill_discount");
 
-                return new Bill(bill_id,total,discount);
+                return Optional.of(new Bill(bill_id, total, discount));
             }
         } catch (SQLException e) {
             logger.error("Error getting user data.");
             throw e;
         }
-        return null;
+        return Optional.empty();
     }
 
-
-
-    private ResultSet getResultSet(PreparedStatement statement, String bill_id) throws SQLException {
-        for (int i = 0; i < bill_id.length(); i++) {
-            statement.setString(i + 1, bill_id[i]);
+    private ResultSet getResultSet(PreparedStatement statement, String... args) throws SQLException {
+        for (int i = 0; i < args.length; i++) {
+            statement.setString(i + 1, args[i]);
         }
         return statement.executeQuery();
     }
