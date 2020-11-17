@@ -73,9 +73,11 @@ public class billRepositoryImpl implements bill_Repository {
         return null;
     }
 
-    private ResultSet getResultSet(PreparedStatement statement, String args) throws SQLException {
-        for (int i = 0; i < args.length; i++) {
-            statement.setString(i + 1, args[i]);
+
+
+    private ResultSet getResultSet(PreparedStatement statement, String bill_id) throws SQLException {
+        for (int i = 0; i < bill_id.length(); i++) {
+            statement.setString(i + 1, bill_id[i]);
         }
         return statement.executeQuery();
     }
