@@ -52,7 +52,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Product findBillById(String id) throws SQLException {
+    public Product findById(String id) throws SQLException {
         String sql = "SELECT (id, name, price) FROM product";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);

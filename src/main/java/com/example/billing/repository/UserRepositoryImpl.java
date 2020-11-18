@@ -16,7 +16,7 @@ public class UserRepositoryImpl implements UserRepository {
     private static final Logger logger = LoggerFactory.getLogger(UserRepositoryImpl.class);
 
     @Override
-    public boolean save(User user) {
+    public User save(User user) {
         String sql = "insert into User" + "(Id,Name,Age,Email)" + "values(?,?,?,?)";
         try (Connection connection = DatasourceImpl.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);) {
@@ -24,11 +24,12 @@ public class UserRepositoryImpl implements UserRepository {
             statement.setString(2, user.getName());
             statement.setInt(3, user.getAge());
             statement.setString(4, user.getEmail());
-            return statement.executeUpdate() == 1;
+             statement.executeUpdate();
         } catch (SQLException e) {
             logger.error("Error saving user data");
         }
-        return false;
+
+        return null;
     }
 
     @Override

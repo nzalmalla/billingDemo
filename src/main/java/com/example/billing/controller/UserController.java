@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 public class UserController {
     private final UserService userService;
@@ -19,14 +19,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
-    public List<User> getAllPerson() {
-        return userService.findAll();
-    }
 
 
     @GetMapping("/user/{id}")
-    public Optional<User> getById(@PathVariable int id) {
+    public User getById(@PathVariable String id) throws SQLException {
         return userService.findById(id);
     }
 

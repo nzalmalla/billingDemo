@@ -10,6 +10,6 @@ public interface ProductRepository {
 
     List<Product> findAll() throws SQLException;
 
-    Product findBillById(String id) throws  SQLException;
+    Product findById(String id) throws  SQLException;
 
 }

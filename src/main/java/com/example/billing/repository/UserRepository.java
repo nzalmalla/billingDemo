@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UserRepository {
-    boolean save(User user);
+    User save(User user);
 
-    List<User> findAll() throws SQLException;
+    List<User>findAll() throws SQLException;
 
     User findById(String id) throws SQLException;
 }

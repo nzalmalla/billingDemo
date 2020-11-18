@@ -22,14 +22,14 @@ public class ProductService {
         return repository.save(product);
     }
 
-    public List<Product> findAll() {
+    public List<Product> findAll() throws SQLException {
         return repository.findAll();
     }
 
 
     public Optional<Product> findById(String id) {
         try {
-            return Optional.of(repository.findBillById(id));
+            return Optional.of(repository.findById(id));
         } catch (SQLException throwables) {
             return Optional.empty();
         }
