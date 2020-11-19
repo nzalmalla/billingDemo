@@ -17,12 +17,12 @@ public class Right<L, R> implements Either<L, R> {
 
     @Override
     public boolean isLeft() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isRight() {
-        return false;
+        return true;
     }
 
     @Override
