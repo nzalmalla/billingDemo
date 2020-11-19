@@ -2,7 +2,10 @@ package com.example.billing.controller;
 
 import com.example.billing.model.User;
 import com.example.billing.service.UserService;
+import fj.data.Either;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +30,13 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public User save(@RequestBody User user) {
-        return userService.save(user);
+    public ResponseEntity<User> save(@RequestBody User user) {
+
+        Either<String, User> save = userService.save(user);
+        if (save.isLeft()){
+           return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        else return ResponseEntity.ok(user);
     }
 
 }
